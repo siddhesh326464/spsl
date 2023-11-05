@@ -1,0 +1,249 @@
+.breadcrumbs_item .arrow {
+  border: solid #dddddd ;
+  display: inline-block;
+  padding: 9px;
+  border-width: 0 1px 1px 0;
+  transform: translateY(14.5px) rotate(-43deg) skew(-15deg, -15deg) translateX(16px);
+  /* background-color: #FFF; */
+}
+
+.active{
+	/* background: #faf7f7; */
+	background-color: #e9ecef
+
+}
+
+.breadcrumbs_item.active span{
+	color: #0d6efd;
+}
+.breadcrumbs_item.active .arrow {
+  /* background: #faf7f7; */
+  background-color: #e9ecef;
+}
+.header{
+	/* background-color: #faf7f7; */
+	padding: 14px 18px;
+}
+.header h5{
+	font-size: 17px;
+}
+.btn_wrapper_bottom{
+	bottom: -9px;
+    position: relative;
+}
+/* .btn_wrapper{
+	padding-top: 10px;
+} */
+.breadcrumbs{
+	border:1px solid #dddddd;
+	flex-wrap: wrap;
+}
+.breadcrumbs .breadcrumbs_item{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	height: 33px;
+	padding-left: 10px;
+}
+.breadcrumbs .breadcrumbs_item span{
+	font-size: 12px;
+	font-weight: bold;
+}
+.breadcrumbs_item::after{
+	border: solid #dddddd;
+    display: inline-block;
+    padding: 9px;
+    border-width: 0 1px 1px 0;
+    transform: translateY(14.5px) rotate(-43deg) skew(-15deg, -15deg) translateX(16px);
+}
+
+.form_wrapper{
+	margin-top: 1rem;
+	/* padding: 10px 20px; */
+}
+
+.form_wrapper label{
+	text-wrap: nowrap;
+}
+.form_wrapper .job_form input,.form_wrapper .job_form select,.job_form .error_msg{
+	margin-left: 14px;
+}
+
+.col-form-label{
+	font-size: 13px;
+	font-weight: bold;
+}
+.download_btn button{
+	font-size: 13px;
+	
+}
+
+.down-btn{
+	margin-left: 27px;
+	margin-right: 134px;
+}
+.down-btns{
+	margin-left: 171px;
+	margin-right: 161px;
+}
+.form_wrapper .form-select{
+    height: 30px!important;
+}
+
+.error_msg{
+	font-size: 12px;
+
+}
+#virtual_req{
+	margin-left: 14px;
+	font-size: 14px;
+}
+
+.select2-results__option{
+	font-size: 13px;
+}
+.alert-close-btn{
+	position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    font-size: 20px;
+	cursor: pointer;
+}
+
+.alert-file-name{
+	font-size: 13px;
+	display:inline-block;
+    width:136px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* .table{
+	table-layout: fixed;
+	word-wrap: break-word;
+} */
+
+.remove_mail{
+	display: none!important;
+}
+
+.tooltip{
+	font-size: 10px;
+}
+.campaign_wrapper{
+	position: relative;
+}
+.campaign_btn{
+	position: absolute;
+	right: -44px;
+    top: 50%;
+    transform: translateY(-50%);
+	padding: 2px 10px;
+}
+.modal-body label,.modal-header button{
+	font-size: 13px;
+}
+.msg_wrapper{
+	background-color: #e9ecef;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	padding: 5px 10px 10px 10px;
+	font-size: 13px;
+}
+.msg_wrapper .msg{
+	margin: 0;
+}
+.sender_name{
+	font-weight: bold;
+}
+.disabled_attachement{
+	cursor: no-drop;
+}
+.chat_btn_wrapper > *{
+	margin-right: 8px;
+}
+
+.page_loader{
+	display: none;
+	background-color: rgba(0,0,0,0.7);
+	position: fixed;
+	z-index: 9999;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+  }
+
+  .job_files label{
+	color: #0d6efd;
+	width: 60px;
+	/* border-bottom: 1px solid #0d6efd; */
+	cursor: pointer;
+  }
+  .dynamic-form:first-child > td > .delete-row {
+	display: none;
+  }
+
+ 
+  .select2-selection__rendered{
+	font-size: 13px;
+  }
+  .select2-id_campaign-container{
+	font-size: 13px;
+  }
+
+  .trow{
+	border: 0px;
+	font-size: 13px;
+  }
+
+  .com_date_bx{
+	border: 0px;
+  }
+  .remove_bul{
+	list-style-type: none;
+	
+  }
+
+  .highlight {
+	background-color: #e9ecef;
+	color:#0d6efd;
+  }
+  
+  .highlight-arrow {
+	background-color:#e9ecef;
+  }
+
+  .modal_btn{
+	display: flex;
+    justify-content: center;
+
+  }
+  .btn_center{
+	padding: 3px 20px;
+  }
+
+  ul.no-bullets {
+	list-style-type: none;
+  }
+
+.file-wrapper{
+	width: 100%;
+	margin: 0 auto;
+	flex-wrap: wrap;
+}
+.file-wrapper > div{
+	width: 48%;
+}
+
+.subfile{
+	margin-left: 14px;
+}

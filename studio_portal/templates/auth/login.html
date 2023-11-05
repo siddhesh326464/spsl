@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login_reset_email.css' %}">
+{% endblock %}
+
+{% block content %}
+	<!-- <div id="overlay">
+		Loading...
+	</div> -->
+	<section class="login bg-light">
+		<div class="container">
+			<div class="row g-0">
+				<div class="col-lg-3">
+			<!---		<img src="images/img2.jpg" class="img-fluid" alt="">  --->
+				</div>   
+				<div class="col-lg-6 text-center">
+					
+					<a>
+					<img src="{% static 'img/logo.svg' %}" class="logo_img"></a>
+					
+					<p class="sign_into">Sign into your account</p>
+					<form action="{% url 'account:login' %}" method="POST" novalidate>
+						{% csrf_token %}
+						<div class="form-row py-3 pt-5">
+							<div class="offset-1 col-lg-10">
+								{{form.username}}
+								{% if form.username.errors %}
+									<div class="error_msg text-danger">
+										{{ form.username.errors.0 }}
+									</div>
+								{% endif %}
+								<!-- <input type="text" name="email" class="inp px-3" id="username" placeholder="Username"> -->
+							</div>
+						</div>
+						
+						<div class="form-row py-3">
+							<div class="offset-1 col-lg-10">
+								{{form.password}}
+								{% if form.password.errors %}
+									<div class="error_msg text-danger">
+										{{ form.password.errors.0 }}
+									</div>
+								{% endif %}
+								<!-- <input type="password" name="password" class="inp px-3" id="password" placeholder="Password"> -->
+							</div>
+						</div>
+						<div class="form-row py-3">
+							<div class="offset-1 col-lg-10">
+								<button class="btn1" name="login" id="submit" type="submit">Submit</button>
+							</div>
+						</div>
+					</form>
+					
+					<div>
+					<!-----<p>Don't have an account? Register here</p>------>
+					<p><a href="email.html" class="forgate">Forgot password ?</a></p></div>
+					{% if messages %}
+						<ul class="mx-5 p-0 text-danger" style="list-style: none;font-size: 12px;">
+							{% for message in messages %}
+								{% if 'auth_msg' in message.extra_tags %}
+									<li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					{% endif %}
+					
+				</div>
+				
+				<div class="col-lg-3">
+			
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+
+							<!--------------Footer------------->
+	<footer style="padding-bottom: 0px;">
+		<div class="container h-100 d-flex align-items-center justify-content-center">
+		<div class="row">
+			<div class="col">
+			<div class="r-icon text-center mt-3">
+				<ul>
+			<!-- <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
+				<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+				<li class="list-inline-item"><a href="#"><i class="fab fa-behance"></i></a></li>
+				<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li> --->
+				</ul>
+			</div>
+			<p class="text-muted" style="font-size:14px;"><a href="http://addnectarstudio.com/"> © 2023 Addnectar Solutions Inc. All rights reserved </a></p>
+			</div>
+		</div>
+		</div>
+	</footer>
+						<!--------------Footer - End------------->
+	<!-- <script>
+		$(window).on('load',function(){
+			$('#overlay').hide();
+		});
+		$(window).on('beforeunload',() =>{
+			$('#overlay').show();
+		})
+		
+	</script> -->
+{% endblock %}
+

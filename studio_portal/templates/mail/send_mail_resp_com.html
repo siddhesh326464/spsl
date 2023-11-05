@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Completion</title>
+</head>
+<body>
+    <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <p style="font-size: 13px;">Greetings,</p>
+        <p></p>
+        <p style="font-size: 13px;">We have completed the virtual box for a Quote #  <span>{{quote_no}}.</span> Please click on below links to download the completed file(s).</p>
+        <p> 
+            <ul style="list-style-type: none; padding-left: 0; font-size: 13px; margin-left:-10px; padding-left:-10px;">
+            {% for filename, url in files.items %} 
+                <li style="counter-increment: my-counter; margin-bottom: 10px; margin-left:0; padding-left:0;">
+                    <span style="display: inline-block; width: 20px; text-align: right;">{{ forloop.counter }}.</span>
+                    <a href="{{ url }}">{{ filename }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </p>
+        <p style="font-size: 13px;">Thank you.</p>
+        <p></p>
+        <p style="font-size: 13px; padding:0; margin:0;">Regards,</p>
+        <p style="font-size: 13px; padding:0; margin:0;">{{client_name}} Art Team</p>
+    </div>
+</body>
+</html>

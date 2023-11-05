@@ -1,0 +1,452 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Create Job{% endblock %}
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/job_list.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/newindexlist.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/add_job_style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="{% static 'js/createJob.js' %}"></script>
+{% endblock %}
+{% block content %}
+    {% include 'common/navbar.html' %}
+      <div class="container-fluid mt-2">
+        <form action="{% url 'job:createjob' %}"  method='POST' enctype="multipart/form-data" id='createjobform' novalidate >
+          {% csrf_token %}
+          <div class="header">
+            <!-- <a class="navbar-brand" href="{% url 'job:home' %}"> -->
+            <h5> <a class="navbar-brand" href="{% url 'job:home' %}"> Virtual Request</a></h5>
+            <!-- </a> -->
+            <div class="btn_wrapper">
+              <button type="submit" class='btn btn-sm btn-primary' id="savebtn">Save</button>
+              <button class='btn btn-sm btn-outline-secondary' id = 'discard_btn'>Discard</button>
+            </div>
+          </div>
+          <div class="breadcrumbs d-flex justify-content-around">
+            <div class='breadcrumbs_item active'> <span>New</span>
+              <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item '> <span>In Progress</span>
+              <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Hold</span>
+              <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Queries</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Correction</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Rush Corrections</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Completed</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Cancelled</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Queries Resolved</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Customer Approved</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Final Approved</span>
+            </div>
+          </div>
+          <div class='form_wrapper' >
+              <div class="row">
+                  <div class='col-6 job_form'>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label star">Quote # <span class='text-danger'>*</span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.quote_no}}
+                        {% if form.quote_no.errors %}
+                            <div class="error_msg text-danger">
+                                {{ form.quote_no.errors.0 }}
+                            </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">REP S Email</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                          {{form.user_email}}
+                          {% if form.user_email.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.user_email.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Logo Name</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.logo_name}}
+                          {% if form.logo_name.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.logo_name.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Logo (Use Same Art For All)</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked> {% endcomment %}
+                        {{form.logo_same_for_all}}
+                          {% if form.logo_same_for_all.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.logo_same_for_all.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      
+                      <label for="inputPassword" class="col-md-3 col-form-label">Send Art to Customer</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked> {% endcomment %}
+                        {{form.send_art_to_customer}}
+                          {% if form.send_art_to_customer.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.send_art_to_customer.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center remove_mail" id="customer_email">
+                      <label for="fa_customer_email" class="col-md-3 col-form-label">Customer Email <span class='text-danger'>*</span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                          {{form.customer_email}}
+                          {% if form.customer_email.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.customer_email.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Job Type <span class='text-danger'>*</span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <select class="form-select form-select-sm py-0" aria-label=".form-select-sm example">
+                          <option selected>Open this select menu</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select> {% endcomment %}
+                          {{form.proof_request_type}}
+                          {% if form.proof_request_type.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.proof_request_type.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label star">Item <span class='text-danger'>*</span></label>
+                      <div class="col-sm-7" >
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.item}}
+                        {% if form.item.errors %}
+                            <div class="error_msg text-danger">
+                              {{ form.item.errors.0 }}
+                            </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Product Color</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.product_color}}
+                          {% if form.product_color.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.product_color.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Imprint Color</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.imprint_color}}
+                          {% if form.logo_name.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.logo_name.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-start">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Submitted Files <span class='text-danger'>*</span></label>
+                      <div class="col-sm-7">
+                        {{ form.submitted_files }}
+                        <div class="file-wrapper d-flex justify-content-between align-items-center subfile"></div>
+                        {% if form.submitted_files.errors %}
+                              <div class="error_msg text-danger">
+                                {{ form.submitted_files.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class='col-6'>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Customer # <span class='text-danger'>*</span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.customer_no}}
+                          {% if form.customer_no.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.customer_no.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Segment #</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.segment_no}}
+                          {% if form.segment_no.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.segment_no.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Customer Name <span class='text-danger'>*</span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.customer_name}}
+                          {% if form.customer_name.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.customer_name.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    {% comment %} <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Segment #</label>
+                      <div class="col-sm-7"> {% endcomment %}
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {% comment %} {{form.segment_no}}
+                          {% if form.segment_no.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.segment_no.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div> {% endcomment %}
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Campaign</label>
+                      <div class="col-sm-7 campaign_wrapper">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.campaign}}
+                        {% if form.campaign.errors %}
+                            <div class="error_msg text-danger">
+                                {{ form.campaign.errors.0 }}
+                            </div>
+                        {% endif %}
+                        <button class="btn btn-primary campaign_btn" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" disabled>
+                          <span><i class='fa fa-pencil'></i></span>
+                        </button> 
+                      </div>
+                        
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Ref #</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.rep_no}}
+                        {% if form.rep_no.errors %}
+                            <div class="error_msg text-danger">
+                                {{ form.rep_no.errors.0 }}
+                            </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Status <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.status}}
+                        {% if form.status.errors %}
+                            <div class="error_msg text-danger">
+                                {{ form.status.errors.0 }}
+                            </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Imprint Location <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.imprint_location}}
+                          {% if form.customer_no.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.customer_no.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Imprint Method</label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.imprint_method}}
+                          {% if form.segment_no.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.segment_no.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Imprint Instructions <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                        {{form.imprint_instructions}}
+                          {% if form.customer_name.errors %}
+                              <div class="error_msg text-danger">
+                                  {{ form.customer_name.errors.0 }}
+                              </div>
+                          {% endif %}
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div>
+              <div class = "mb-12 mt-6 row d-flex align-items-center" >
+                {% comment %} <label for="" class  = 'note_name'>Note</label> {% endcomment %}
+                <div class="col-12 mt-6">
+                  {{form.note}}
+                </div>
+
+              </div>
+          </div>
+          {% comment %} Save and des {% endcomment %}
+           <div class="btn_wrapper" style="margin-bottom: 12px;">
+              <button type="submit" class='btn btn-sm btn-primary' id='savebtn1'>Save</button>
+              <button class='btn btn-sm btn-outline-secondary' id = 'discard_btn1'>Discard</button>
+            </div>
+        </form>
+      </div>
+      <!-- add campaign modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-sm">
+            <div class="modal-content">
+              <div class="modal-header py-2">
+                <h1 class="modal-title fs-6" id="exampleModalLabel">Create Campaign</h1>
+                <button type="button" class="btn-close btn-sm close_btn" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body py-2">
+                <div class="mb-3">
+                  <label for="campaign_name" class="form-label">Campaign Name</label>
+                  <input type="text" class="form-control form-control-sm" id="campaign_name" data-id placeholder="Enter campaign name">
+                </div>
+              </div>
+              <div class="modal-footer py-2">
+                <button type="button" class="btn btn-secondary btn-sm close_btn" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm" id="campaign_add_btn" disabled>Add</button>
+              </div>
+            </div>  
+        </div>
+      </div>
+      <script src="{% static 'js/jquery.formset.js' %}"></script>
+      <script type="text/javascript">
+        const removeFile = (e) => {
+     let fileName = $(e).attr('data-source');
+     let parentId = $(e).attr('data-id')
+     let fileList = $(`#${parentId}`)[0]
+     let fileArray = Array.from(fileList.files);
+     let finalList = fileArray.filter(f => f.name != fileName);
+     let newFileList = new DataTransfer();
+     finalList.map(f=>newFileList.items.add(f))
+     fileList.files = newFileList.files
+
+     $(e).parent().closest('div').remove();
+     submitted_file[$(e).attr('data-id')] = submitted_file[$(e).attr('data-id')].filter(f=>f.name!=$(e).attr('data-source'));
+}
+
+const setItemFile = (file_type,key,value) => {
+     let serializedFiles = value.map(function(file) {
+          return {
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          lastModified: file.lastModified
+          };
+});
+
+let files = getFileList('submitted_file',key)
+var filesJson = undefined;
+if (!files){
+     let fileDict = {};
+     fileDict[key] = serializedFiles;
+     filesJson = JSON.stringify(fileDict);
+}
+else {
+     files[key] = serializedFiles;
+     filesJson = JSON.stringify(files);
+}
+localStorage.setItem(file_type,filesJson)
+}
+
+const getFileList = (file_type,key) => {
+     var filesJson = localStorage.getItem(file_type);
+     if (filesJson) {
+          var serializedFiles = JSON.parse(filesJson);
+          return serializedFiles
+     }
+     return false
+}
+
+const convertObjToFileList = (files) => {
+     var fileList = new DataTransfer();
+     files.forEach(function(file) {
+          var newFile = new File([], file.name, { type: file.type, lastModified: file.lastModified });
+          fileList.items.add(newFile);
+     });
+     return fileList
+}
+let submitted_file = {}
+const handleFileOnChange = (e) => {
+     $(e).next().empty()
+     let Files = Array.from(e.files);
+     let fileName = submitted_file[e.id] != undefined ? submitted_file[e.id].map(f=>f.name) : []
+     submitted_file[e.id] = submitted_file[e.id] != undefined ? [... new Set(submitted_file[e.id].concat(Files.filter(f=> !fileName.includes(f.name))))] : Files;
+     let newFileList = new DataTransfer();
+     submitted_file[e.id].map(f=>newFileList.items.add(f))
+     e.files = newFileList.files
+     $.each(submitted_file[e.id],(id,elm) => {
+               let alertBox = `<div class="alert alert-secondary alert-dismissible fade show py-1 px-2 mb-1" role="alert">
+                                   <p class='mb-0 alert-file-name'>${elm.name}</p>
+                         <span class="alert-close-btn" onclick = "removeFile(this)" data-source='${elm.name}' data-id="${e.id}"><i class="fa fa-times text-danger"></i></span>
+                         </div>`
+               $(e).next().append(alertBox)
+     })
+};
+
+      </script>
+{% endblock %}

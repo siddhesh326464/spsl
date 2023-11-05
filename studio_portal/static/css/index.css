@@ -1,0 +1,331 @@
+body{
+    font-family: 'Inter', sans-serif !important;
+}
+html {
+    scroll-behavior: smooth;
+}
+button, input, optgroup, select, textarea,span{
+    font-family: 'Inter', sans-serif !important;
+}
+.active{
+    background-color: #0d6efd;
+    color: #fff!important;
+}
+
+.nav-link{
+    font-size: 15px;
+    padding: 1px;
+    margin-left: 7px;
+}
+.dot {
+    height: 50px;
+    width: 50px;
+    background-color:blue;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+.navbar-brand img{
+    width: 120px;
+
+}
+.table{
+    font-size: 11px;
+    border-color: #d8d1d1;
+}
+.table-head{
+    background-color: #eee;
+}
+
+.accordion-button::after{
+    left: 0.8rem;
+    /* top: 50%; */
+    transform: translateY(-50%);
+    width: 9px;
+    transform: rotate(270deg);
+    height: 5px;
+    background-size: contain;
+    background-image : url('data:image/svg+xml;utf8,<svg width="100" height="50" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 100,0 50,50" style="fill:%23212529;" /></svg>');
+}
+.accordion-button:not(.collapsed)::after{
+    top: 50%;
+    height: 5px;
+    width: 9px;
+    background-image : url('data:image/svg+xml;utf8,<svg width="100" height="50" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 100,0 50,50" style="fill:%23212529;" /></svg>');
+    transform: translateY(-50%) rotate(360deg);
+    
+}
+.paginator-wrapper div span{
+    color: #080808;
+    font-weight: unset!important;
+    font-size: 13px;
+}
+.parent-tbody > tr > td {
+    padding: 0!important;
+}
+.accordion-button{
+    padding-left: 25px;
+    line-height: 5px;
+}
+
+.accordion-button span{
+    font-size: 13px;
+}
+.accordion-header{
+    position: relative;
+}
+.accordion-icon{
+    position: absolute;
+    left: 23px;
+    top: 50%;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    font-size: 18px;
+}
+.dropdown-toggle::after{
+    display: none;
+}
+#navbarDropdownMenuLink{
+    border-radius: 50px;
+    padding: 6px;
+    cursor: pointer;
+}
+.navbar-nav{
+    display: flex;
+    align-items: center;
+}
+.dropdown-menu[data-bs-popper]{
+    left: unset;
+    right: 0;
+}
+.accordion-body table tbody tr{
+    vertical-align: middle;
+}
+.accordion-body table tbody tr:nth-child(even){
+    background-color: #fff;
+}
+.accordion-body table tbody tr:nth-child(odd){
+    background-color: #efeff8;
+}
+.form-control:focus,.form-select:focus,.btn-close{
+    box-shadow: unset;
+}
+.paginator-wrapper .btn-sm{
+    padding-top: 0.02rem!important;
+    padding-bottom: 0.02rem!important;
+}
+.paginator-wrapper .btn-sm i{
+    font-weight: bold;
+}
+.paginator-wrapper{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99999;
+    background: transparent;
+}
+.paginator-wrapper div{
+    font-size: small;
+}
+
+footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    z-index: -2;
+}
+
+.search_ba::placeholder,input[type="text"]{
+    font-size: 13px;
+    height: 27px;
+    padding-left: 3px;
+}
+.accordion-button span{
+    user-select: none;
+}
+.disabled-row{
+    pointer-events: none;
+}
+.accordion-body{
+    position: relative;
+}
+.loader{
+    position: absolute;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    z-index: 9999;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none; 
+}
+.createBtn{
+    padding: 0.15rem 0.5rem;
+}
+.navbar{
+    background-color: #f7f7f7;
+}
+.search_form{
+    padding: 0;
+    width: 496px;
+}
+.dropdown-menu{
+    padding: 0.2rem 0;
+}
+.dropdown-item{
+    font-size: 14px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.accordion-body{
+    padding: 0;
+}
+.navbar-brand{
+    padding-top: 0;
+}
+
+.list-group-item{
+    padding: 5px 8px;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+.list-group-item:hover{
+    color: #0d6efd;
+}
+.search_form{
+    position: relative;
+}
+.job_dropdown{
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    z-index: 9999;
+    display: none;
+}
+.icon_search{
+    cursor: pointer;
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-55%);
+}
+.form-check-label{
+    user-select: none;
+}
+
+.search_form ul.search_item_chip{
+    padding-inline-start: 0px;
+    display: flex;
+    flex:1;
+    flex-wrap: wrap;
+    margin: 0;
+    border-radius: 5px;
+    border: 1px solid #a6a6a6;
+    overflow: hidden;
+  }
+
+  .search_form ul.search_item_chip input{
+    flex: 1;
+    padding: 5px;
+    border: none;
+    outline: none;
+  }
+
+  .search_form ul.search_item_chip  li{
+    color: #333;
+    margin: 0px 3px 0px 0px;
+    list-style: none;
+    border-radius: 5px;
+    background: #F2F2F2;
+    padding: 2px;
+    border: 1px solid #e3e1e1;
+    font-size: 13px;
+  }
+  .search_form ul.search_item_chip li i{
+    height: 20px;
+    width: 20px;
+    color: #808080;
+    margin-left: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #dfdfdf;
+    justify-content: center;
+  }
+
+  .list-group-item .form-check-input{
+    display: none;
+  }
+.form-check-input:checked ~ label{
+    color: #0a58ca;
+
+}
+
+.accordion-button.collapsed ~ .paginator-wrapper{
+    display: none!important;
+}
+.page_loader{
+    display: none;
+    background-color: rgba(0,0,0,0.7);
+	position: fixed;
+	z-index: 9999;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+/* campaign modal */
+.campaign_wrapper{
+	position: relative;
+}
+.campaign_btn{
+	position: absolute;
+	right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+	padding: 2px 10px;
+}
+.modal-body label,.modal-header button{
+	font-size: 13px;
+}
+
+.modal_btn{
+	display: flex;
+    justify-content: center;
+
+  }
+
+.btn_center{
+	padding: 3px 20px;
+  }
+
+.att-btn{
+    padding: 3px 20px;
+    margin-left: -115px;
+}

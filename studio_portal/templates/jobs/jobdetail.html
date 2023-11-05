@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Job Details{% endblock %}
+{% block head %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/job_list.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/newindexlist.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/add_job_style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <script src="{% static 'js/createJob.js' %}"></script>
+        <script src="{% static 'js/chat.js' %}"></script>
+        <script src="{% static 'js/downloadfile.js' %}"></script>
+        <script src="{% static 'js/deletefile.js' %}"></script>
+        <script src="{% static 'js/detailjob.js' %}"></script>
+{% endblock %}
+{% block content %}
+    {% include 'common/navbar.html' %}
+      <div class="container-fluid mt-2">
+          <div class="header">
+            <h5> <a class="navbar-brand" href="{% url 'job:home' %}"> Virtual Request/{{jobdetail.id}}</a></h5>
+            <div class="btn_wrapper">
+              <a href="{% url 'job:appupdatejob' pk=jobdetail.id %}" class='btn btn-sm btn-primary'>Edit</a>
+              <a href="{% url 'job:createjob' %}" class='btn btn-sm btn-outline-secondary'>Create</a>
+              <button class='btn btn-sm btn-outline-secondary' id='customeremailbtn'>Send art to customer</button>
+            </div>
+          </div>
+          <div class="breadcrumbs d-flex justify-content-around">
+            <div class='breadcrumbs_item'> <span>New</span>
+              <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item '> <span>In Progress</span>
+              <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>On Hold</span>
+              <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Queries</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Corrections</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Rush Corrections</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Completed</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Cancelled</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Queries Resolved</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Customer Approved</span>
+                <div class="arrow">
+              </div>
+            </div>
+            <div class='breadcrumbs_item'> <span>Final Approved</span>
+            </div>
+          </div>
+          <div class='form_wrapper' >
+              <div class="row">
+                  <div class='col-6 job_form'>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label star">Quote # <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="quote_no" value = "{{jobdetail.quote_no}}" disabled>
+                        
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">REP S Email</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="id_user_email" value = "{{jobdetail.user}}" disabled>
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Logo Name</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.logo_name}}" disabled>
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Logo (Use Same Art For All)</label>
+                      <div class="col-sm-7">
+                        <input class="form-check-input" type="checkbox" value="{{jobdetail.logo_same_for_all}}" {% if jobdetail.logo_same_for_all %} checked {% endif %} disabled>
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      
+                      <label for="inputPassword" class="col-md-3 col-form-label" >Send Art to Customer</label>
+                      <div class="col-sm-7">
+                        <input class="form-check-input" type="checkbox" id="id_send_art_to_customer" value="{{jobdetail.send_art_to_customer}}" {% if jobdetail.send_art_to_customer %} checked {% endif %} disabled>
+                        
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center remove_mail" id="customer_email">
+                      <label for="fa_customer_email" class="col-md-3 col-form-label">Customer Email <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="id_email_customer" value = "{{jobdetail.customer_email}}" disabled>
+                          
+                      </div>
+                    </div>
+                    <!--  -->
+                    <!-- <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label star">Submitted Date # <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.submitted_date}}" disabled>
+                        
+                      </div>
+                    </div> -->
+                    <!--  -->
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Job Type <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        {% comment %} <input type="text" value = {{jobdetail.proof_request_type}}> {% endcomment %}
+                        <select name="proof_request_type" class="form-select form-select-sm py-0" id="id_proof_request_type" disabled>
+                          <option value="{{jobdetail.proof_request_type.proof_key}}" selected>{{jobdetail.proof_request_type.proof_value}}</option>
+                        </select>                       
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class='col-6 job_form'>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label star">Submitted Date # <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.submitted_date}}" disabled>
+                        
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Customer # <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.customer_no}}" disabled>
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Segment #</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.segment_no}}" disabled>
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Customer Name <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.customer_name}}" disabled> 
+                      </div>
+                    </div>
+                    <!-- <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Segment #</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.segment_no}}" disabled>
+                      </div>
+                    </div> -->
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Campaign</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="inputPassword" value = "{{jobdetail.campaign}}" disabled>
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Ref #</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" value = "{{jobdetail.rep_no}}" disabled>  
+                      </div>
+                    </div>
+                    <div class="mb-12 mb-3 row d-flex align-items-center">
+                      <label for="inputPassword" class="col-md-3 col-form-label">Status <span class='text-danger'></span></label>
+                      <div class="col-sm-7">
+                        <select name="proof_request_type" class="form-select form-select-sm py-0" id="id_proof_request_type" disabled>
+                          <option value="{{ jobdetail.status.status_key}}"  selected>{{ jobdetail.status.status_value}}</option>
+                          
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+              <div>
+                <div class='form_wrapper' >
+                  {% for i in jobdetail.job %}
+                  <div class="row" style="margin-top: -17px;">
+                      <div class='col-6 job_form' style="margin-top: -15px !important;">
+                        <div class="mb-12 mb-3 row d-flex align-items-center">
+                          <label for="inputPassword" class="col-md-3 col-form-label star">Item # <span class='text-danger'></span></label>
+                          <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-sm" id="quote_no" value = "{{i.item}}" disabled>
+                            
+                          </div>
+                        </div>
+                        <div class="mb-12 mb-3 row d-flex align-items-center">
+                          <label for="inputPassword" class="col-md-3 col-form-label">Product Color</label>
+                          <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-sm" id="id_user_email" value = "{{i.product_color}}" disabled>
+                          </div>
+                        </div>
+                        <div class="mb-12 mb-3 row d-flex align-items-center">
+                          <label for="inputPassword" class="col-md-3 col-form-label">Imprint Color</label>
+                          <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-sm" value = "{{i.imprint_color}}" disabled>
+                          </div>
+                        </div>
+                        <div class="mb-12 mb-3 row d-flex align-items-center">
+                          <label for="inputPassword" class="col-md-3 col-form-label">Imprint Location</label>
+                          <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-sm" value = "{{i.imprint_location}}" disabled>
+                          </div>
+                        </div>
+                        <div class="mb-12 mb-3 row d-flex align-items-start">
+                          <label for="inputPassword" class="col-md-3 col-form-label">Submitted Files <span class='text-danger'></span></label>
+                          <div class="col-sm-7">
+                              <div class='file-wrapper d-flex justify-content-between align-items-center' style="margin-left: 14px;">
+                                {% for file in i.sub_files %}
+                                    <div class="alert alert-secondary alert-dismissible fade show py-1 px-2 mb-1 job_files" id ="file-sub" role="alert">
+                                      <label class="me-3" data-bs-toggle="tooltip" data-bs-placement="top" title="{{file.file_name}}" data-bs-html="true" data-url="{% url 'job:downloadfile' file_type=file.file_type file_id=file.id %}" style="font-size: 13px;">{{file.file_name|truncatechars:19}}</label>
+                                    </div>
+                                  {% endfor %}
+                              </div>
+                          </div>
+
+                        </div>
+                      </div>
+                        <div class='col-6 job_form'>
+                          <div class="mb-12 mb-3 row d-flex align-items-center">
+                            <label for="inputPassword" class="col-md-3 col-form-label">Imprint Method<span class='text-danger'></span></label>
+                            <div class="col-sm-7">
+                              <input type="text" class="form-control form-control-sm" value = "{{i.imprint_method}}" disabled>
+                            </div>
+                          </div>
+                          <div class="mb-12 mb-3 row d-flex align-items-center">
+                            <label for="inputPassword" class="col-md-3 col-form-label">Imprint Instructions</label>
+                            <div class="col-sm-7">
+                              <input type="text" class="form-control form-control-sm" value = "{{i.imprint_instructions}}" disabled>
+                            </div>
+                          </div>
+                          <div class="mb-12 mb-3 row d-flex align-items-center">
+                            <label for="inputPassword" class="col-md-3 col-form-label">Completed Datetime</label>
+                            <div class="col-sm-7">
+                              <input type="text" class="form-control form-control-sm" value = "{{i.completed_datetime}}" disabled>
+                            </div>
+                          </div>
+                          <div class="mb-12 mb-3 row d-flex align-items-start">
+                            <label for="inputPassword" class="col-md-3 col-form-label">Completed Files <span class='text-danger'></span></label>
+                            <div class="col-sm-7">
+                              {% comment %} <input type="text" class="form-control form-control-sm" id="inputPassword"> {% endcomment %}
+                                <div class='file-wrapper d-flex justify-content-between align-items-start' style="margin-left: 14px;">
+                                  {% for file in i.com_files %}
+                                    <div class="alert alert-secondary alert-dismissible fade show py-1 px-2 mb-1 job_files"  id="filecom"role="alert">
+                                      <label class="me-3" data-bs-toggle="tooltip" data-bs-placement="top" title="{{file.file_name}}" data-bs-html="true" data-url="{% url 'job:downloadfile' file_type=file.file_type file_id=file.id %}" style="font-size: 13px;">{{file.file_name|truncatechars:19}}</label>
+                                    </div>
+                                  {% endfor %}
+                                </div>
+                            </div>
+                          </div>
+                          <div class="download_btn d-flex justify-content-center">
+                            <button class="btn btn-primary btn-sm down-btn" id="download_btn" {% if jobdetail.job.0.com_files|length == 0 %}disabled{%endif%}>Download Completed Files</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {%endfor%}
+                </div>
+                  <div class="mb-12 mt-6 row d-flex align-items-center">
+                    <div class="col-12">
+                      <textarea name="note" cols="40" rows="3" class="form-control form-select-sm my-3" placeholder="Note Regarding Job" id="id_note" disabled>{{jobdetail.note}}</textarea>
+                    </div>
+                  </div>
+          </div>
+        </form>
+      </div>
+      <form id='chat_form'>
+        {% csrf_token %}
+        <div>
+          <div class="mb-12 mt-6 row d-flex align-items-center">
+            <label class="col-form-label">Send Message</label>
+            <div class="col-12">
+              <textarea name="send_message" cols="40" rows="3" class="form-control form-select-sm" placeholder="write something..." id="id_msg" ></textarea>
+              <div class="download_btn d-flex align-items-center mt-2 chat_btn_wrapper">
+                <button class='btn btn-primary btn-sm' id='send' disabled>Send</button>
+                <label class='btn btn-outline-secondary btn-sm disabled_attachement' for='attachment' style='font-size:13px' id='attach' disabled>Attachment</label>
+                <span id='file_name'></span>
+                <input type='file' id='attachment' style='display:none' disabled>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </form>
+      <div class="chat_wrapper mt-2">
+        {% for msg in msgs %}
+        <div class="msg_wrapper my-2">
+          <div class="sender_header">Note by <span class='sender_name'>{{msg.user_id}}</span> - {{msg.log_datetime}}</div>
+          <ul class="msg no-bullets">
+            <li>{{msg.details}}</li>
+            {% if msg.prev_status and msg.new_status %}
+            <span> Status :
+              {{msg.prev_status}} 
+              <span style='font-size:18px;'>&#8594;</span>
+              {{msg.new_status}}
+            </span>
+            {% endif %}
+            {% if msg.attachment %}
+              <li><label for=""  data-url="{% url 'job:downloadfile' file_type=msg.attachment.file_type file_id=msg.id %}" id='chat_file' >{{msg.attachment.file_name}}</label></li>
+            {% endif %}
+          </ul>
+        </div>
+        {% endfor %}
+
+        {% if messages %}
+        <div class="modal fade" id="jobMsgModal" tabindex="-1" role="dialog" aria-labelledby="jobMsgModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+              <div class="modal-header py-2">
+                <h1 class="modal-title fs-6">Job Messages</h1>
+              </div>
+              <div class="modal-body">
+                {% for message in messages %}
+                {% if message.extra_tags == 'job_msg' %}
+                <p style="font-size: 15px;">
+                  {{ message }}
+                </p>
+                {% endif %}
+                {% endfor %}
+              </div>
+              <div class="modal-footer modal_btn py-2">
+                <button type="button" class="btn btn-primary btn-sm btn_center" id ="hide_ok" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
+        
+        <script>
+          $(document).ready(function () {
+            {% for message in messages %}
+              {% if message.extra_tags == 'job_msg' %}
+                $('#jobMsgModal').modal('show');
+                $('#hide_ok').on('click', function () {
+                  $('#jobMsgModal').modal('hide');
+                });
+                setTimeout(function () {
+                  $('#jobMsgModal').modal('hide');
+                }, 150000); // 3000 milliseconds = 3 seconds
+              {% endif %}
+            {% endfor %}
+          });
+        </script>
+        
+      
+      <script src="{% static 'js/createJob.js' %}"></script>
+      <script src="{% static 'js/deletefile.js' %}"></script>
+      <script type="text/javascript">
+        const removeFile = (e) =>{
+          let fileName = $(e).attr('data-source');
+          let parentId = $(e).attr('data-id')
+          let fileList = $(`#${parentId}`)[0]
+          let fileArray = Array.from(fileList.files);
+          let finalList = fileArray.filter(f => f.name != fileName);
+          let newFileList = new DataTransfer();
+          finalList.map(f=>newFileList.items.add(f))
+          fileList.files = newFileList.files
+          $(e).parent().closest('div').remove();
+        }
+        const handleFileOnChange = (e) => {
+            $(e).next().empty()
+            let Files = Array.from(e.files);
+            $.each(Files,(id,elm) => {
+                  let alertBox = `<div class="alert alert-secondary alert-dismissible fade show py-1 px-2 mb-1" role="alert">
+                                      <p class='mb-0 alert-file-name'>${elm.name}</p>
+                                {% comment %} <button type="button" class="btn-close ps-2"></button> {% endcomment %}
+                                <span class="alert-close-btn" key="false" onclick = "removeFile(this)" data-source='${elm.name}' data-id="${e.id}"><i class="fa fa-times text-danger"></i></span>
+                            </div>`
+                  $(e).next().append(alertBox)
+            })
+        };
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'js/deletefile.js' %}"></script>
+        <script>
+            var job_id = "{{jobdetail.id}}";
+            console.log(job_id);
+            document.getElementById('download_btn').addEventListener('click', function() {
+              var id = job_id;
+              var url = '/download_zip_file/' + id;
+              var xhr = new XMLHttpRequest();
+              xhr.open('GET', url, true);
+              xhr.responseType = 'blob';
+              xhr.onload = function() {
+                if (xhr.status === 200) {
+                  var blob = new Blob([xhr.response], { type: 'application/zip' });
+                  var link = document.createElement('a');
+                  link.href = URL.createObjectURL(blob);
+                  quote_no_com_zip = "{{jobdetail.quote_no}}"
+                  link.download = quote_no_com_zip + ' - ' + 'Completed files.zip'
+                  link.style.display = 'none';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }
+                $('.page_loader').css('display','none');
+              };
+              xhr.onprogress = function(event) {
+                if (event.lengthComputable) {
+                  var percentage = Math.floor((event.loaded / event.total) * 100);
+                }
+              };
+              xhr.onerror = function() {
+              };
+              xhr.send();
+              $('.page_loader').css('display','flex');
+
+            });
+
+            // status row highlight with grey
+            $(document).ready(function() {
+                let status = "{{jobdetail.status.status_value}}";
+                $('.breadcrumbs_item').each(function() {
+                  var spanText = $(this).find('span').text();
+
+                  if (spanText === status) {
+                    $(this).addClass('highlight');
+                    $(this).find('.arrow').addClass('highlight-arrow');
+                  }
+                });
+              });
+          </script>
+{% endblock %}
+  

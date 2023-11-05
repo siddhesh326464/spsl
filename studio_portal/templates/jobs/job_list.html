@@ -1,0 +1,1101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job List</title>
+	<link rel="stylesheet" type="text/css" href="css/job_list.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous"/>
+													<!--------Font Link---------->
+	<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto:wght@100&display=swap" rel="stylesheet"> 
+
+</head>
+
+<body>
+
+					<!---Header-->
+  <nav class="container-fluid d-flex justify-content-between pt-2">
+    <div class="py-1">
+      <a><img src="images/logo.svg" class="logo_img"></a>
+    </div>
+    <div class="current virtual_p">
+
+      <ul class="nav pt-2">
+		
+        <li class="nav__item"><a class="nav__link" href="">
+			<span class="active"><b>Virtuals</b></span></a>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="#">
+			<span><b> Paperproof </b><span></a>
+		</li>
+      </ul>
+
+    </div>
+    <div class="user_rc"> <a id="rc" href="">RC</a></div> 
+  </nav>
+					<!--Header End-->
+
+
+					<!--Create Button & Search Bar-->
+					
+<div class="navbar navbar-expand-sm navbar pt-2">
+  <div class="container-fluid">
+  
+  <form action="add_job.html" method="POST">
+    <a class="d-flex navbar-brand" href="javascript:void(0)">
+	 <h4 class="virtual_text">Virtual Request</h4>
+	 <button class="btn_1">Create</button>	 
+	</a>
+  </form>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+	
+    <div id="mynavbar" class="search_box">
+      <form class="search_form d-flex">
+        <input class="search_ba form-control me-2" type="text" placeholder="Search..." />
+		<span class="icon_search" >
+			<i class="fa fa-search" aria-hidden="true"></i> 
+		</span>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+			<!--Advance Search Dropdown
+<div class="container" class="adv_cont" style="margin-top: -14px;
+	margin-bottom: -10px;">
+	<div class="row">
+		<div class="col-md-9"></div>
+			<div class="col-md-3">
+				<div class="dropdown">
+				  <a class="btn_adv btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+					Advance Search
+				  </a>
+				  <ul class="drop_body dropdown-menu" aria-labelledby="dropdownMenuButton1" style="transform: translate(-88px, 34px) !important;">
+					<li class="date_stat_text dropdown-item"><label>&nbsp;&nbsp; Date : &nbsp;</label><input type="date"></li>
+					<li class="date_stat_text class="dropdown-item"><label class="lab_status">Status :&nbsp;</label></li>
+					<select type="text">
+						  <option selected></option>
+						  <option value="1">New</option>
+						  <option value="2">In-Progress</option>
+						  <option value="3">On Hold</option>
+						  <option value="3">Queries</option>
+						  <option value="3">Correction</option>
+						  <option value="3">Completed</option>
+						  <option value="3">Cancelled</option>
+						  <option value="3">Queries Resolved</option>
+						  <option value="3">Customer Approved</option>
+						  <option value="3">Final Approved</option>
+						  <option value="3">Rush Correction</option>
+					</select> 
+					
+					
+					<li class="dropdown-item"><button type="button" class="go_button">Go</button></li>
+				  </ul>
+				</div>
+			</div>	
+	</div>
+</div>-->
+						<!--Advance Dropdown End-->
+						
+						   <!--Accordian Start-->
+
+ <section class="container-fluid accordian-section pt-2">
+
+        <div  class="row-fluid">
+           <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr class="text1 table1 table">   
+						
+						<th scope="col" class="text" style="width: 11%"></th>
+                        <!--<th scope="col" class="text" style="width: 2%"><input type="checkbox"></th>-->
+                        <th scope="col" class="text" style="width: 7%">Req #</th>
+                        <th scope="col" class="text" style="width: 9%">Quote #</th>
+                        <th scope="col" class="text" style="width: 7%">Submitted Date</th>
+                        <th scope="col" class="text" style="width: 9%">Status</th>
+                        <th scope="col" class="text" style="width: 12%">Customer Name</th>
+                        <th scope="col" class="text" style="width: 10%">Customer #</th>
+                        <th scope="col" class="text" style="width: 7%">Request Type</th>
+                        <th scope="col" class="text" style="width: 6%">Logo Name</th>
+                        <th scope="col" class="text" style="width: 9%">Campaign</th>
+                        <th scope="col" class="text" style="width: 9%">Rep #</th>
+                        
+                    </tr>
+                </thead>
+            </table>
+		  </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> New </b> &nbsp; (<span>03</span>) 
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+					</button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						  <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">  
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req447842</a></td>
+										<td scope="col" class="text" style="width: 9%">Req290441 -</td>
+										<td scope="col" class="text" style="width: 7%">08/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLCV</td>
+										<td scope="col" class="text" style="width: 10%">C03254151</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Stars</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke Taxel 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44544</a></td>
+										<td scope="col" class="text" style="width: 9%">Req25794 -</td>
+										<td scope="col" class="text" style="width: 7%">12/09/2022 23:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Mittle Smarsh</td>
+										<td scope="col" class="text" style="width: 10%">C0315798</td>
+										<td scope="col" class="text" style="width: 7%">Appearel Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Book Logo</td>
+										<td scope="col" class="text" style="width: 9%">America Saves Week</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44788</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29078 -</td>
+										<td scope="col" class="text" style="width: 7%">14/08/2022 13:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Jofra Archer</td>
+										<td scope="col" class="text" style="width: 10%">C0325420</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">America's Safe School Week</td>
+										<td scope="col" class="text" style="width: 9%">Broke 1085</td>
+
+                                    </tr>
+                                </tbody>
+																
+                            </table>
+						  </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		 <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseTwo">
+							<span><i class="fas fa-caret-right"></i></span>&nbsp;<b> In-Progress</b> &nbsp;(<span>03</span>)
+							<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+					</button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						  <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+								
+								
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingtdree">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapsetdree" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapsetdree">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> On Hold</b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+						
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapsetdree" class="accordion-collapse collapse "
+                    aria-labelledby="panelsStayOpen-headingtdree">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample" >
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseFour">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Queries</b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+					</button>
+                </h2>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingFour">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+								
+								
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseFive">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Corrections </b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingFive">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseSix">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Completed </b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingSix">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+                            </table>
+							
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingSeven">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseSeven">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Cancelled </b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingSeven">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingEight">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseEight">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Queries Resolved </b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingEight">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingNine">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseNine">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Customer Approved </b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingNine">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTen">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTen" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseTen">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Final Approved </b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTen">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+							    <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+							
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingEleven">
+                    <button class="acc_name accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseEleven" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseEleven">
+                        <span><i class="fas fa-caret-right"></i></span>&nbsp;<b> Rush Corrections </b> &nbsp;(<span>03</span>)
+						<div class="page_no"><span > 10 / 20 </span> &nbsp;&nbsp;
+						<a href="" class="left_aroow"><i class="fa fa-angle-left iconborder" aria-hidden="true"></i></a>&nbsp;&nbsp;
+						<a href="" class="right_aroow"><i class="fa fa-angle-right iconborder" aria-hidden="true"></i></a></div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingEleven">
+                    <div class="accob accordion-body">
+
+                        <div class="row">
+						<div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="thead-dark align-middle">
+									<tr class="text1 table1">   
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+									</tr>
+								</thead>
+                                <tbody>
+							
+                                    <tr>
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+
+                                
+
+                                    <tr class="table1">
+
+										<td scope="col" class="text" style="width: 11%"></td>
+										<!--<td scope="col" class="text" style="width: 2%"><input type="checkbox"></td>-->
+										<td scope="col" class="text" style="width: 7%"><a href="job_detail.html" 
+										style="color: #454343; text-decoration: none;"> Req44784</a></td>
+										<td scope="col" class="text" style="width: 9%">Req29044 -</td>
+										<td scope="col" class="text" style="width: 7%">8/11/2022 18:56 AM</td>
+										<td scope="col" class="text" style="width: 9%">New</td>
+										<td scope="col" class="text" style="width: 12%">Four LLC</td>
+										<td scope="col" class="text" style="width: 10%">C0325415</td>
+										<td scope="col" class="text" style="width: 7%">Standard Proof Request</td> 	 
+										<td scope="col" class="text" style="width: 6%">Four Star</td>
+										<td scope="col" class="text" style="width: 9%">Administrative Professionals Day</td>
+										<td scope="col" class="text" style="width: 9%">Broke 517</td>
+
+                                    </tr>
+                                </tbody>
+								
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+		
+						<!--------------Footer------------->
+<footer style="padding-bottom: 0px;">
+    <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
+      <div class="row">
+        <div class="col">
+          <div class="r-icon text-center mt-3">
+            <ul>
+            </ul>
+          </div>
+          <p class="text-muted" style="font-size:14px;"><a href="http://addnectarstudio.com/">
+		  © 2023 Addnectar Solutions Inc. All rights reserved </a></p>
+        </div>
+      </div>
+    </div>
+ </footer>
+					<!--------------Footer - End------------->
+	
+</body>
+</html>

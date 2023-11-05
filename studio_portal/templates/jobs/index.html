@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_tags %}
+{% block title %}Job list{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/job_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/newindexlist.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+{% endblock %}
+
+{% block content %}
+    {% include 'common/navbar.html' %}
+     
+    <div class="container-fluid mt-4">
+      <div class="search-form-wrapper d-flex justify-content-between align-items-center mt-2">
+        <div>
+          <label style="font-weight: bold;">Virtual Requests</label>
+        </div>
+          <div>
+            <form class="search_form d-flex" autocomplete="off">
+              <ul class="search_item_chip"><input type="text" spellcheck="false" placeholder="Search..." id="job_search" data_source="{% url 'alljob' %}"></ul>
+             <span class="icon_search" >
+                  <i class="fa fa-search-plus" aria-hidden="true" id="searchIcons"></i> 
+              </span> 
+            
+              <div class="job_dropdown">
+                <ul class="list-group">
+                  <li class="list-group-item" data-source="all" data-param="all">
+                      Search for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Logo Name" data-param="logo">
+                      Search Logo Name for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Segment #" data-param="segment">
+                      Search Segment # for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Request Number" data-param="requestnumber">
+                      Search Request Number for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Quote #" data-param="quote">
+                      Search Quote # for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Campaign" data-param="campaign">
+                      Search Campaign for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Customer no" data-param="customerno">
+                      Search Customer # for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Customer name" data-param="customername">
+                      Search Customer Name for: <span class='search_val'></span>
+                    </li>
+                  <li class="list-group-item" data-source="Rep" data-param="repno">
+                      Search Ref # for: <span class='search_val'></span>
+                    </li>
+                </ul>
+              </div>
+          </form>
+
+          </div>
+          <div> 
+            
+            <a href="{% url 'job:createjob' %}" class="btn btn-sm btn-primary createBtn" >Create</a>
+            <!-- <label style="font-weight: bold;">Virtuals</label> -->
+          </div>
+      </div>
+  </div>  
+    <div class="container-fluid mt-2">
+        <table class="table table-bordered">
+            <thead class="table-head">
+              <tr>
+                <th scope="col" style="width: 11%"></th>
+                <th scope="col" style="width: 5%">Req #</th>
+                <th scope="col" style="width: 9%">Quote #</th>
+                <th scope="col" style="width: 8%">Submitted Date</th>
+                <!-- <th scope="col" style="width: 6%">Status</th> -->
+                <th scope="col" style="width: 10%">Customer Name</th>
+                <th scope="col" style="width: 8%">Customer #</th>
+                <th scope="col" style="width: 9%">Job Type</th>
+                <th scope="col" style="width: 9%">Logo Name</th>
+                <th scope="col" style="width: 10%">Campaign</th>
+                <th scope="col" style="width: 13%">Ref #</th>
+              </tr> 
+            </thead>
+            <tbody class="parent-tbody">
+              
+              <tr>
+                <td colspan="15">
+                  <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <p data="{{status|join:','}}" data-name="{{status_name|join:','}}" style="display: none;" id="jobStatus"></p>
+                    {% for s in status %}
+                      <div class="accordion-item">
+                        <!-- <h2 class="accordion-header {% if total_count|job_status_count:s.name == 0 %} disabled-row {% endif %}" id="flush-headingOne-{{forloop.counter}}"> -->
+                          <h2 class="accordion-header" id="flush-headingOne-{{forloop.counter}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-{{forloop.counter}}" aria-expanded="false" aria-controls="flush-collapseOne-{{forloop.counter}}">
+                              <!-- <span class="accordion-icon"><i class="fa fa-caret-right"></i></span> -->
+                            <span>{{s.name}}</span>&nbsp; 
+                            <span data-id="{{s.name|lower}}">({{total_count | job_status_count:s.name}})</span>
+                          </button>
+                          <div class="d-flex justify-content-center paginator-wrapper">
+                            <a href="{% url 'jobstatus' status=s.value %}" class="api-url_{{forloop.counter}}"></a></span>
+                            <div class="d-flex justify-content-center align-items-center me-2">
+                                <span id="start_limit_{{forloop.counter}}">00</span>
+                                <span>-</span>
+                                <span id="end_limit_{{forloop.counter}}">10</span>
+                                <span>/</span>
+                                <span class="total_count_{{forloop.counter}} t_count">{{total_count | job_status_count:s.name}}</span>
+                            </div>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" disabled id="prev_{{forloop.counter}}" data-table="job_table_{{forloop.counter}}"><i class="fa fa-angle-left"></i></button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm ms-2" id="next_{{forloop.counter}}" data-table="job_table_{{forloop.counter}}"><i class="fa fa-angle-right"></i></button>
+                            <!-- <button type="button" class="btn btn-secondary btn-sm ms-2" id="pagenumber_{{forloop.counter}}"></button> -->
+                          </div>
+                        </h2>
+                        <div id="flush-collapseOne-{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne-{{forloop.counter}}" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <div class="loader">
+                              <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                              </div>
+                            </div>
+                              <table class="table table-striped" id="job_table_{{forloop.counter}}" data-source="{{s.name|lower}}">
+                                  <tbody>
+                                    {% if jobs|job_status:s.name %}
+                                      {% for i in jobs|job_status:s.name %}
+                                          <tr>
+                                            <td style="width: 11%;"></td>
+                                            <td style="width: 5%;"><a href="{% url 'job:jobdetail' pk=i.id %}">{{i.id}}</a></td>
+                                            <td style="width: 9%;">{{i.quote_no}}</td>
+                                            <td style="width: 8%;">{{i.submitted_date}}</td>
+                                            <td style="width: 10%;">{{i.customer_name}}</td>
+                                            <td style="width: 8%;">{{i.customer_no}}</td>
+                                            <td style="width: 9%;">{{i.proof_request_type}}</td>
+                                            <td style="width: 9%;">{{i.logo_name}}</td>
+                                            <td style="width: 10%;">{{i.campaign}}</td>
+                                            <td style="width: 13%;">{{i.rep_no}}</td>
+                                          </tr>
+                                      {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td style="width: 11%;">No job found</td>
+                                        </tr>
+                                      
+                                    {% endif %}
+                                  </tbody>
+                                </table>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                    </div>
+                </td>
+              </tr>
+          
+            </tbody>
+          </table>
+    </div>
+    
+    <footer class="footer" style="padding-bottom: 0px;">
+        <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
+        <div class="row">
+            <div class="col">
+            <div class="r-icon text-center mt-3">
+                <ul>
+                </ul>
+            </div>
+            <p class="text-muted" style="font-size:14px;"><a href="http://addnectarstudio.com/">
+            © 2023 Addnectar Solutions Inc. All rights reserved </a></p>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    {% if messages %}
+    <div class="modal fade" id="jobMsgModal" tabindex="-1" role="dialog" aria-labelledby="jobMsgModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header py-2">
+            <h1 class="modal-title fs-6">Job Messages</h1>
+          </div>
+          <div class="modal-body">
+            {% for message in messages %}
+            {% if message.extra_tags == 'job_msg' %}
+            <p>
+              {{ message }}
+            </p>
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="modal-footer modal_btn py-2">
+            <button type="button" class="btn btn-primary btn-sm btn_center" id ="hide_ok" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    
+    <script>
+      $(document).ready(function () {
+        {% for message in messages %}
+          {% if message.extra_tags == 'job_msg' %}
+            $('#jobMsgModal').modal('show');
+            $('#hide_ok').on('click', function () {
+              $('#jobMsgModal').modal('hide');
+            });
+            setTimeout(function () {
+              $('#jobMsgModal').modal('hide');
+            }, 9000); // 3000 milliseconds = 3 seconds
+          {% endif %}
+        {% endfor %}
+      });
+    </script>
+    <script src="{% static 'js/index.js' %}"></script>
+    {% endblock %}
+
